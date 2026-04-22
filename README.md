@@ -38,10 +38,10 @@ git clone https://github.com/selindgnr/rl-behavioral-modeling.git
 cd rl-behavioral-modeling
 
 # Install dependencies
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 
 # Open the notebook
-jupyter notebook bandit_task.ipynb
+python -m notebook bandit_task.ipynb
 ```
 
 ## 📈 Key Results
