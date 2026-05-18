@@ -1,58 +1,62 @@
 # RL Behavioral Modeling: Exploration-Exploitation in Human Decision-Making
 
-This project models human decision-making behavior in a **multi-armed bandit task** using reinforcement learning. It simulates how people balance *exploration* (trying new options) and *exploitation* (sticking with what works) — a core question in computational neuroscience and behavioral research.
+This project models human decision-making behavior in a multi-armed bandit task using reinforcement learning. It simulates how people balance exploration and exploitation, a core question in computational neuroscience and behavioral research.
 
-## 🧠 Background
+## Background
 
-In many real-world decisions, people must choose between options with uncertain rewards. The **multi-armed bandit** is a classic paradigm to study this:
-- A participant repeatedly chooses between N slot machines ("arms")
+In many real-world decisions, people must choose between options with uncertain rewards. The multi-armed bandit is a classic paradigm to study this:
+
+- A participant repeatedly chooses between `N` slot machines ("arms")
 - Each arm has a hidden reward probability
-- The goal: maximize total reward over time
+- The goal is to maximize total reward over time
 
-How do people solve this? This project fits three computational models to simulated human behavior and compares their performance.
+This project fits three computational models to simulated human behavior and compares their performance.
 
-## 📊 Models Implemented
+## Models Implemented
 
 | Model | Description |
-|---|---|
-| **Random** | Baseline — chooses randomly |
-| **Greedy** | Always picks the arm with highest observed reward |
-| **Q-Learning (softmax)** | Learns reward values, explores via temperature parameter |
+| --- | --- |
+| `Random` | Baseline model that chooses randomly |
+| `Greedy` | Always picks the arm with the highest observed reward |
+| `Q-Learning (softmax)` | Learns reward values and explores via a temperature parameter |
 
-## 🗂️ Project Structure
+## Parameter Recovery
 
-```
+The key model-check in this project is parameter recovery: after simulating participants with known learning-rate and exploration parameters, the model is fit back to those data to test whether it can recover the original values.
+
+![Parameter recovery](assets/parameter-recovery.png)
+
+## Project Structure
+
+```text
 rl-behavioral-modeling/
-│
-├── bandit_task.ipynb       # Main analysis notebook
-├── bandit_task.py          # Core simulation & modeling code (importable)
-├── requirements.txt        # Dependencies
-└── README.md
+|-- bandit_task.ipynb
+|-- bandit_task.py
+|-- generate_readme_assets.py
+|-- assets/
+|-- requirements.txt
+`-- README.md
 ```
 
-## 🚀 How to Run
+## How to Run
 
 ```bash
-# Clone the repo
 git clone https://github.com/selindgnr/rl-behavioral-modeling.git
 cd rl-behavioral-modeling
-
-# Install dependencies
 python -m pip install -r requirements.txt
-
-# Open the notebook
+python generate_readme_assets.py
 python -m notebook bandit_task.ipynb
 ```
 
-## 📈 Key Results
+## Key Results
 
-- Q-learning with softmax exploration outperforms both random and greedy strategies
-- Learning rate (α) and temperature (β) parameters interact to shape exploration behavior
-- Simulated behavior qualitatively matches patterns observed in human participants
+- Q-learning with softmax exploration outperforms both random and greedy strategies.
+- Learning rate (`alpha`) and temperature (`beta`) jointly shape exploration behavior.
+- Parameter recovery shows the model can recover the true simulated parameters reasonably well.
 
-## 🔗 Relevance
+## Relevance
 
-This codebase is inspired by work at the **Max Planck Institute for Biological Cybernetics**, where similar models were applied to characterize exploration–exploitation dynamics in human behavioral experiments.
+This codebase is inspired by work at the Max Planck Institute for Biological Cybernetics, where similar models were used to characterize exploration-exploitation dynamics in human behavioral experiments.
 
 ## Dependencies
 

@@ -272,8 +272,9 @@ def plot_parameter_recovery(
     true_alphas: List[float],
     true_betas: List[float],
     recovered_alphas: List[float],
-    recovered_betas: List[float]
-) -> None:
+    recovered_betas: List[float],
+    show: bool = True,
+) -> plt.Figure:
     """Check how well the model recovers known parameters (parameter recovery test)."""
     fig, axes = plt.subplots(1, 2, figsize=(10, 4))
 
@@ -293,4 +294,6 @@ def plot_parameter_recovery(
     axes[1].grid(alpha=0.3)
 
     plt.tight_layout()
-    plt.show()
+    if show:
+        plt.show()
+    return fig
